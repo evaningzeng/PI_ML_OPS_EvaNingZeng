@@ -1,0 +1,13 @@
+requests
+streamlit
+pandas
+numpy
+missingno
+ydata_profiling
+seaborn
+matplotlib
+wordcloud
+pydantic
+fastapi
+uvicorn
+scikit-learn
