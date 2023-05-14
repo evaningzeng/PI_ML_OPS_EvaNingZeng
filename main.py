@@ -8,7 +8,7 @@ from model import create_tfidf_model
 app = FastAPI()
 
 # Cargar los datos
-df = pd.read_csv('dataset/processed_movies_dataset.csv')
+df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv')
 
 # Cargar el modelo TF-IDF y la matriz de similitud
 tfidf, cosine_sim, indices = create_tfidf_model(df)
