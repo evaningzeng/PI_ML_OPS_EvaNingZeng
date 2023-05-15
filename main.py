@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
 import pandas as pd
 import uvicorn
@@ -13,10 +12,6 @@ df['day'] = df['release_date'].dt.day_name(locale='es')  # Extraer el nombre del
 
 # Creamos la aplicación
 app = FastAPI()
-
-class Movie(BaseModel):
-    title: str
-
 
 # Mensaje inicial de saludos
 @app.get("/")
@@ -112,7 +107,5 @@ async def obtener_recomendacion(titulo: str):
     lista_recomendada = recomendacion(titulo)
     return {'lista recomendada': lista_recomendada}
 
-
-# Iniciamos la aplicación
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)
