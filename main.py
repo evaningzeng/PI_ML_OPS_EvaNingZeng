@@ -106,6 +106,3 @@ def retorno(pelicula: str):
 async def obtener_recomendacion(titulo: str):
     lista_recomendada = recomendacion(titulo)
     return {'lista recomendada': lista_recomendada}
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8080)
