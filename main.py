@@ -103,6 +103,6 @@ def retorno(pelicula: str):
 
 # Endpoint para recomendación de películas
 @app.get("/recomendacion/{titulo}")
-async def obtener_recomendacion(titulo: str):
+def obtener_recomendacion(titulo: str):
     lista_recomendada = recomendacion(titulo)
     return {'lista recomendada': lista_recomendada}
