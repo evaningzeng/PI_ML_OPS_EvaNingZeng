@@ -2,10 +2,6 @@ from fastapi import FastAPI
 import pandas as pd
 import uvicorn
 from model import recomendacion
-import locale
-
-# Establecer la configuración regional en español
-locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
 # Columnas a cargar
 columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', 'country', 'production_companies', 'revenue', 'budget', 'return']
@@ -14,8 +10,8 @@ columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', '
 df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv', usecols=columns_to_load)
 
 df['release_date'] = pd.to_datetime(df['release_date'])  # Convertir a datetime
-df['month'] = df['release_date'].dt.month_name()  # Extraer el nombre del mes
-df['day'] = df['release_date'].dt.day_name()  # Extraer el nombre del día
+df['month'] = df['release_date'].dt.month  # Extraer el número del mes
+df['day'] = df['release_date'].dt.dayofweek + 1  # Extraer el número del día de la semana (1-7)
 
 # Creamos la aplicación
 app = FastAPI()
@@ -27,19 +23,19 @@ def read_root():
 
 # Endpoint para obtener la cantidad de películas por mes
 @app.get("/peliculas_mes/{mes}")
-def peliculas_mes(mes: str):
+def peliculas_mes(mes: int):
     try:
-        count = df[df['month'] == mes.capitalize()].shape[0]
-        return {'mes':mes, 'cantidad':count}
+        count = df[df['month'] == mes].shape[0]
+        return {'mes': mes, 'cantidad': count}
     except Exception as e:
         print(f"Error: {e}")
 
 # Endpoint para obtener la cantidad de películas por día
 @app.get("/peliculas_dia/{dia}")
-def peliculas_dia(dia: str):
+def peliculas_dia(dia: int):
     try:
-        count = df[df['day'] == dia.capitalize()].shape[0]
-        return {'dia':dia, 'cantidad':count}
+        count = df[df['day'] == dia].shape[0]
+        return {'dia': dia, 'cantidad': count}
     except Exception as e:
         print(f"Error: {e}")
 
