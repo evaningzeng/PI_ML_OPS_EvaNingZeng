@@ -1,5 +1,7 @@
 import requests
 import streamlit as st
+from urllib.parse import quote
+
 
 # Define la URL del punto de acceso de la API
 API_URL = "http://localhost:8000"
@@ -17,7 +19,7 @@ def app():
 
     # Realiza la solicitud a la API
     if title:
-        response = requests.get(API_URL + RECOMMENDATION_PATH, params={"title": title})
+        response = requests.get(API_URL + RECOMMENDATION_PATH + quote(title))
         if response.status_code == 200:
             recommended_movies = response.json()["lista recomendada"]
             st.write("Películas recomendadas:")

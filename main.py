@@ -2,16 +2,21 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 import pandas as pd
 import uvicorn
-from model import create_tfidf_model
+from model import recomendacion
+
+# Cargamos los datos
+df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv')
+
+df['release_date'] = pd.to_datetime(df['release_date'])  # Convertir a datetime
+df['month'] = df['release_date'].dt.month_name(locale='es')  # Extraer el nombre del mes en español
+df['day'] = df['release_date'].dt.day_name(locale='es')  # Extraer el nombre del mes en español
 
 # Creamos la aplicación
 app = FastAPI()
 
-# Cargar los datos
-df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv')
-
 class Movie(BaseModel):
     title: str
+
 
 # Mensaje inicial de saludos
 @app.get("/")
@@ -100,6 +105,13 @@ def retorno(pelicula: str):
 
     except Exception as e:
         print(f"Error: {e}")
+
+# Endpoint para recomendación de películas
+@app.get("/recomendacion/{titulo}")
+async def obtener_recomendacion(titulo: str):
+    lista_recomendada = recomendacion(titulo)
+    return {'lista recomendada': lista_recomendada}
+
 
 # Iniciamos la aplicación
 if __name__ == "__main__":
