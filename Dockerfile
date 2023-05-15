@@ -12,9 +12,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all the project files to the working directory
 COPY . .
-
-# Expose the port your application will be running on
-EXPOSE 8080
-
-# Set the entry point to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
