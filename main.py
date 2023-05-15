@@ -2,6 +2,10 @@ from fastapi import FastAPI
 import pandas as pd
 import uvicorn
 from model import recomendacion
+import locale
+
+# Establecer la configuración regional en español
+locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 
 # Columnas a cargar
 columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', 'country', 'production_companies', 'revenue', 'budget', 'return']
@@ -10,8 +14,8 @@ columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', '
 df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv', usecols=columns_to_load)
 
 df['release_date'] = pd.to_datetime(df['release_date'])  # Convertir a datetime
-df['month'] = df['release_date'].dt.month_name(locale='es')  # Extraer el nombre del mes en español
-df['day'] = df['release_date'].dt.day_name(locale='es')  # Extraer el nombre del mes en español
+df['month'] = df['release_date'].dt.month_name()  # Extraer el nombre del mes
+df['day'] = df['release_date'].dt.day_name()  # Extraer el nombre del día
 
 # Creamos la aplicación
 app = FastAPI()
