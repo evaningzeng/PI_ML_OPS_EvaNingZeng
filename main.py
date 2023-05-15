@@ -3,8 +3,11 @@ import pandas as pd
 import uvicorn
 from model import recomendacion
 
+# Columnas a cargar
+columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', 'country', 'production_companies', 'revenue', 'budget', 'return']
+
 # Cargamos los datos
-df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv')
+df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv', usecols=columns_to_load)
 
 df['release_date'] = pd.to_datetime(df['release_date'])  # Convertir a datetime
 df['month'] = df['release_date'].dt.month_name(locale='es')  # Extraer el nombre del mes en español
@@ -104,5 +107,8 @@ def retorno(pelicula: str):
 # Endpoint para recomendación de películas
 @app.get("/recomendacion/{titulo}")
 def obtener_recomendacion(titulo: str):
-    lista_recomendada = recomendacion(titulo)
-    return {'lista recomendada': lista_recomendada}
+    recomendaciones = recomendacion(titulo)
+    return {"recomendaciones": recomendaciones}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
