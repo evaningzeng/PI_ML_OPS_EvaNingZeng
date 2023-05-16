@@ -74,6 +74,7 @@ Se desarrolló una interfaz gráfica en Streamlit, para facilitar la interacció
 
 ## Video Demo
 
-Link: 
+Link: https://youtu.be/3WHeC2BbHd8
 
-Se hizo un video para mostrar el funcionamiento de la API y los resultados del modelo de machine learning entrenado.
+Se hizo un video para mostrar el trabajo realizado, el funcionamiento de la API y los resultados del modelo de machine learning entrenado.
+
