@@ -90,7 +90,7 @@ def main():
     # Definir el conversor para la columna 'popularity'
     converters = {"popularity": convert_popularity}
     # Leer el archivo CSV
-    data = pd.read_csv("dataset/movies_dataset.csv", converters=converters)
+    data = pd.read_csv("https://storage.googleapis.com/pimlopsenz/dataset/movies_dataset.csv", converters=converters)
     # Aplicar las transformaciones
     data = process_countries(data)
     data = process_collection(data)

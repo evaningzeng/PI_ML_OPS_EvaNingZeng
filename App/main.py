@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 import pandas as pd
 import uvicorn
-from model import recomendacion
+import sys
+sys.path.insert(1, '../')
+
+from Modelo.model import recomendacion
 
 # Cargamos los datos
 df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/movie_data_for_api.csv')
