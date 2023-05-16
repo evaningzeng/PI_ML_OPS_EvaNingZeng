@@ -3,15 +3,8 @@ import pandas as pd
 import uvicorn
 from model import recomendacion
 
-# Columnas a cargar
-columns_to_load = ['title', 'release_date', 'release_year', 'collection_name', 'country', 'production_companies', 'revenue', 'budget', 'return']
-
 # Cargamos los datos
-df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/processed_movies_dataset.csv', usecols=columns_to_load)
-
-df['release_date'] = pd.to_datetime(df['release_date'])  # Convertir a datetime
-df['month'] = df['release_date'].dt.month  # Extraer el número del mes
-df['day'] = df['release_date'].dt.dayofweek + 1  # Extraer el número del día de la semana (1-7)
+df = pd.read_csv('https://storage.googleapis.com/pimlopsenz/dataset/movie_data_for_api.csv')
 
 # Creamos la aplicación
 app = FastAPI()
@@ -23,7 +16,7 @@ def read_root():
 
 # Endpoint para obtener la cantidad de películas por mes
 @app.get("/peliculas_mes/{mes}")
-def peliculas_mes(mes: int):
+def peliculas_mes(mes: str):
     try:
         count = df[df['month'] == mes].shape[0]
         return {'mes': mes, 'cantidad': count}
@@ -32,7 +25,7 @@ def peliculas_mes(mes: int):
 
 # Endpoint para obtener la cantidad de películas por día
 @app.get("/peliculas_dia/{dia}")
-def peliculas_dia(dia: int):
+def peliculas_dia(dia: str):
     try:
         count = df[df['day'] == dia].shape[0]
         return {'dia': dia, 'cantidad': count}
@@ -66,7 +59,7 @@ def franquicia(franquicia: str):
 def peliculas_pais(pais: str):
     try:
         count = df[df['country'] == pais].shape[0]
-        return {'pais':pais, 'cantidad':count}
+        return {'pais': pais, 'cantidad': count}
     except Exception as e:
         print(f"Error: {e}")
 
@@ -74,10 +67,10 @@ def peliculas_pais(pais: str):
 @app.get("/productoras/{productora}")
 def productoras(productora: str):
     try:
-        subset = df[df['production_companies'].str.contains(productora, na=False)]
+        subset = df[df['companies_name'].str.contains(productora, na=False)]
         total_revenue = subset['revenue'].sum()
         count = subset.shape[0]
-        return {'productora':productora, 'ganancia_total':total_revenue, 'cantidad':count}
+        return {'productora': productora, 'ganancia_total': total_revenue, 'cantidad': count}
     except Exception as e:
         print(f"Error: {e}")
 
@@ -112,3 +105,4 @@ def obtener_recomendacion(titulo: str):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

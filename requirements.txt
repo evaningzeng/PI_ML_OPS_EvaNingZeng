@@ -1,4 +1,3 @@
-locale
 requests
 streamlit
 pandas
