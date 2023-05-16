@@ -56,7 +56,7 @@ El EDA incluye gráficas interesantes para extraer datos, como por ejemplo una n
 
 ## Sistema de recomendación
 
-Ver el código en [Modelo/model.py](https://github.com/evaningzeng/PI_ML_OPS_EvaNingZeng/tree/ca91dc355df47124737fd2679502c35c95177fe7/Modelo)
+Ver el código en [Modelo/model.py](https://github.com/evaningzeng/PI_ML_OPS_EvaNingZeng/blob/ca91dc355df47124737fd2679502c35c95177fe7/Modelo/model.py)
 
 Se implementó un sistema de recomendación de películas basado en el modelo Nearest Neighbors utilizando TF-IDF. La función `recomendacion` toma un título de película como entrada y devuelve una lista de las 5 películas más similares en orden descendente de similitud. El modelo se ajusta a los datos de películas seleccionados y limpios y utiliza la métrica del coseno para medir la similitud.
 
