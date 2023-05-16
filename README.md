@@ -1,6 +1,10 @@
 # Proyecto Individual Nº1: Machine Learning Operations (MLOps)
 
-En este proyecto, se desarrollará un sistema de recomendación de películas para una start-up de agregación de plataformas de streaming. Como MLOps Engineer, el objetivo es implementar un modelo de Machine Learning de recomendación de películas en un entorno de producción. Los datos iniciales presentan limitaciones en calidad y estructura, por lo que se realizará un trabajo rápido de Data Engineering para transformarlos y prepararlos adecuadamente. El proyecto se centrará en llevar el modelo desde su etapa inicial hasta la implementación en producción, brindando información valiosa y mejoras según los resultados y necesidades de la empresa.
+En este proyecto, se desarrollará un sistema de recomendación de películas para una start-up de agregación de plataformas de streaming 🎬🚀.
+
+Como `Data Scientist` en el rol de `MLOps Engineer`, el objetivo es implementar un modelo de `Machine Learning` para recomendación de películas en un entorno de producción. Se trabajará en un `MVP` (*Minimum Viable Product*) para la start-up, con el desafío de tenerlo listo en una semana 🛠⏰.
+
+Los datos iniciales presentan limitaciones en calidad y estructura. Por lo tanto, se realizará un trabajo de `Data Engineering` para transformarlos y prepararlos adecuadamente. El proyecto se centrará en llevar el modelo desde su etapa inicial hasta la implementación en producción, brindando información valiosa y mejoras según los resultados y necesidades de la empresa. 💡📊 
 
 La propuesta de trabajo incluye las siguientes etapas:
 
@@ -31,9 +35,7 @@ Se utilizó el framework FastAPI para desarrollar una API que permita acceder a 
 
 Link: [https://pi-ml-ops-evaningzeng.onrender.com](https://pi-ml-ops-evaningzeng.onrender.com/)
 
-Se utilizó el servicio de Render para desplegar
-
-la API y permitir su consumo desde la web. Probar el funcionamiento de la API en https://pi-ml-ops-evaningzeng.onrender.com/docs.
+Se utilizó el servicio de Render para desplegar la API y permitir su consumo desde la web. Probar el funcionamiento de la API en https://pi-ml-ops-evaningzeng.onrender.com/docs. Escribe los parámetros en minúscula. 
 
 ## Análisis exploratorio de los datos: (Exploratory Data Analysis-EDA)
 
